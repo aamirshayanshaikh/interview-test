@@ -11,6 +11,7 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -74,6 +75,24 @@ public class TransactionDataFetcherTest {
     void testFindCompliance_whenIssueIsOpen_returnList() {
         assertNotNull(dataFetcher.hasOpenComplianceIssues("Uzair Ahmed", mockedTransactions));
         assertEquals(1, dataFetcher.hasOpenComplianceIssues("Uzair Ahmed", mockedTransactions).size(),
+                "test success");
+    }
+
+    @Test
+    void testGetUnsolvedIssueIds_whenIssueIsUnResolved_returnListOfIds() {
+        assertEquals(11124, dataFetcher.getUnsolvedIssueIds(mockedTransactions).get(0),
+                "test success");
+    }
+
+    @Test
+    void testAllSolvedIssueMessages_whenIssueIsResolved_returnListMessages() {
+        assertEquals(Arrays.asList("true", "true", "true"), dataFetcher.getAllSolvedIssueMessages(mockedTransactions),
+                "test success");
+    }
+
+    @Test
+    void testGetTopAmountSender_WhenTransactionIsMade_returnAmount() {
+        assertEquals(100.0, dataFetcher.getTopSender(mockedTransactions).get().getAmount(),
                 "test success");
     }
 }

@@ -103,15 +103,15 @@ public class TransactionDataFetcher {
     /**
      * Returns the identifiers of all open compliance issues
      */
-    public Set<Integer> getUnsolvedIssueIds(List<Transaction> transaction) {
+    public List<Integer> getUnsolvedIssueIds(List<Transaction> transaction) {
         if (Objects.nonNull(transaction)) {
             return transaction.stream()
                     .filter(tr -> !tr.getIssueSolved())
                     .map((Transaction tr) -> tr.getIssueId())
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toList());
 
         }
-        return Collections.emptySet();
+        return Collections.emptyList();
     }
 
     /**
