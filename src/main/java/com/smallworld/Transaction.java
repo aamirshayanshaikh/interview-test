@@ -14,7 +14,11 @@ public class Transaction {
 
     public Transaction() {}
 
-    public Transaction(Long mtn, Double amount, String senderFullName, Integer senderAge, String beneficiaryFullName, Integer beneficiaryAge, Integer issueId, Boolean issueSolved, String issueMessage) {
+    public Transaction(Long mtn, Double amount,
+                       String senderFullName, Integer senderAge,
+                       String beneficiaryFullName, Integer beneficiaryAge,
+                       Integer issueId, Boolean issueSolved,
+                       String issueMessage) {
         this.mtn = mtn;
         this.amount = amount;
         this.senderFullName = senderFullName;

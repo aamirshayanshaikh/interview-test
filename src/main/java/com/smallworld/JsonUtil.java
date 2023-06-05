@@ -2,13 +2,18 @@ package com.smallworld;
 
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class JsonUtil {
 
-    public static Transaction[]  processJson()  {
+    public static List<Transaction> processJson()  {
         Gson gson = new Gson();
         FileReader reader = null;
         try {
@@ -17,9 +22,11 @@ public class JsonUtil {
             e.printStackTrace();
         }
         if (reader != null) {
-            return gson.fromJson(reader, Transaction[].class);
+            Type listType = new TypeToken<ArrayList<Transaction>>(){}.getType();
+            List<Transaction> transactionList = new Gson().fromJson(reader, listType);
+            return transactionList;
         }
 
-        return new Transaction[0];
+        return Collections.emptyList();
     }
 }
